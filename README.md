@@ -95,12 +95,13 @@ ng serve
 http://localhost:4200
 
 ## Endpoints principales
-GET     /applications/
-POST    /applications/
-GET     /applications/{id}
-PUT     /applications/{id}
-DELETE  /applications/{id}
-Variables y configuración
+- GET     /applications/
+- POST    /applications/
+- GET     /applications/{id}
+- PUT     /applications/{id}
+- DELETE  /applications/{id}
+
+## Variables y configuración
 
 ### Actualmente el frontend consume el backend local desde:
 
