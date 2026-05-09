@@ -11,7 +11,7 @@ import {
   providedIn: 'root'
 })
 export class ApplicationService {
-  private readonly apiUrl = 'http://127.0.0.1:8000/applications';
+  private readonly apiUrl = 'https://gcp-fullstack-backend-588231403889.us-central1.run.app/applications';
 
   constructor(private http: HttpClient) {}
 
