@@ -1,10 +1,6 @@
 from fastapi import FastAPI
-from app.database import Base, engine
-from app import models
-from app.routes import router as applications_router
 from fastapi.middleware.cors import CORSMiddleware
-
-Base.metadata.create_all(bind=engine)
+from app.routes import router as applications_router
 
 app = FastAPI(
     title="GCP Fullstack App",
@@ -25,9 +21,11 @@ app.add_middleware(
 
 app.include_router(applications_router)
 
+
 @app.get("/")
 def root():
     return {"message": "API funcionando correctamente"}
+
 
 @app.get("/health")
 def health_check():

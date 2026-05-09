@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from datetime import datetime
 from typing import Optional
 
 
@@ -22,8 +21,5 @@ class ApplicationUpdate(BaseModel):
 
 
 class ApplicationResponse(ApplicationBase):
-    id: int
-    created_at: datetime
-
-    class Config:
-        from_attributes = True
+    id: str
+    created_at: str
