@@ -116,7 +116,3 @@ Proyecto funcional en ambiente local.
 ### Pendiente:
 
 - Editar postulaciones desde Angular
-- Preparar backend para producción
-- Desplegar backend en Cloud Run
-- Desplegar frontend en Firebase Hosting
-- Conectar frontend desplegado con backend desplegado
