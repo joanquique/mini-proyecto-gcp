@@ -51,20 +51,20 @@ gcp-fullstack-app/
 
 ## Cómo ejecutar el backend
 
-Entrar a la carpeta del backend:
+### Entrar a la carpeta del backend:
 
 cd backend
 
-Crear y activar entorno virtual:
+### Crear y activar entorno virtual:
 
 python -m venv venv
 venv\Scripts\activate
 
-Instalar dependencias:
+### Instalar dependencias:
 
 pip install -r requirements.txt
 
-Ejecutar servidor:
+### Ejecutar servidor:
 
 uvicorn app.main:app --reload
 
@@ -72,37 +72,38 @@ El backend queda disponible en:
 
 http://127.0.0.1:8000
 
-Documentación Swagger:
+### Documentación Swagger:
 
 http://127.0.0.1:8000/docs
 
 ## Cómo ejecutar el frontend
 
-Entrar a la carpeta del frontend:
+### Entrar a la carpeta del frontend:
 
 cd frontend
 
-Instalar dependencias:
+### Instalar dependencias:
 
 npm install
 
-Ejecutar Angular:
+### Ejecutar Angular:
 
 ng serve
 
-El frontend queda disponible en:
+### El frontend queda disponible en:
 
 http://localhost:4200
 
 ## Endpoints principales
-GET     /applications/
-POST    /applications/
-GET     /applications/{id}
-PUT     /applications/{id}
-DELETE  /applications/{id}
-Variables y configuración
+- GET     /applications/
+- POST    /applications/
+- GET     /applications/{id}
+- PUT     /applications/{id}
+- DELETE  /applications/{id}
 
-Actualmente el frontend consume el backend local desde:
+## Variables y configuración
+
+### Actualmente el frontend consume el backend local desde:
 
 http://127.0.0.1:8000/applications
 
@@ -112,10 +113,10 @@ Para producción, esta URL deberá cambiarse por la URL generada por Cloud Run.
 
 Proyecto funcional en ambiente local.
 
-Pendiente:
+### Pendiente:
 
-Editar postulaciones desde Angular
-Preparar backend para producción
-Desplegar backend en Cloud Run
-Desplegar frontend en Firebase Hosting
-Conectar frontend desplegado con backend desplegado
+- Editar postulaciones desde Angular
+- Preparar backend para producción
+- Desplegar backend en Cloud Run
+- Desplegar frontend en Firebase Hosting
+- Conectar frontend desplegado con backend desplegado
