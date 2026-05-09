@@ -1,0 +1,78 @@
+<main class="container">
+  <section class="header">
+    <h1>Postulaciones</h1>
+    <p>Mini proyecto fullstack con Angular, FastAPI y GCP.</p>
+  </section>
+  
+  <form class="form" [formGroup]="applicationForm" (ngSubmit)="createApplication()">
+    <div class="form-group">
+      <label>Empresa</label>
+      <input type="text" formControlName="company" placeholder="Ej. Google">
+    </div>
+
+    <div class="form-group">
+      <label>Puesto</label>
+      <input type="text" formControlName="position" placeholder="Ej. Frontend Developer">
+    </div>
+
+    <div class="form-group">
+      <label>Estatus</label>
+      <select formControlName="status">
+        <option value="Pendiente">Pendiente</option>
+        <option value="En proceso">En proceso</option>
+        <option value="Entrevista">Entrevista</option>
+        <option value="Rechazada">Rechazada</option>
+        <option value="Aceptada">Aceptada</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Notas</label>
+      <textarea formControlName="notes" placeholder="Ej. Mandé CV por LinkedIn"></textarea>
+    </div>
+
+    <button type="submit">
+      Guardar postulación
+    </button>
+  </form>
+
+  @if (loading) {
+    <p>Cargando postulaciones...</p>
+  }
+
+  @if (error) {
+    <p class="error">{{ error }}</p>
+  }
+
+  @if (!loading && applications.length === 0) {
+    <p>No hay postulaciones registradas.</p>
+  }
+
+  <section class="grid">
+    @for (application of applications; track application.id) {
+      <article class="card">
+        <h2>{{ application.company }}</h2>
+        <p class="position">{{ application.position }}</p>
+        <p class="status">{{ application.status }}</p>
+
+        @if (application.notes) {
+          <p class="notes">{{ application.notes }}</p>
+        }
+
+        <div class="card-footer">
+          <small>
+            Creada: {{ application.created_at }}
+          </small>
+
+          <button 
+            type="button" 
+            class="delete-button"
+            (click)="deleteApplication(application.id)"
+          >
+            Eliminar
+          </button>
+        </div>
+      </article>
+    }
+  </section>
+</main>
