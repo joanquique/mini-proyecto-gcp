@@ -28,6 +28,8 @@ export class App implements OnInit {
     });
 
     this.editForm = this.fb.group({
+      company: ['', Validators.required],
+      position: ['', Validators.required],
       status: ['Pendiente', Validators.required],
       notes: ['']
     });
@@ -50,7 +52,7 @@ export class App implements OnInit {
       }
     });
   }
-  
+
   createApplication(): void {
     if (this.applicationForm.invalid) {
       this.applicationForm.markAllAsTouched();
@@ -77,6 +79,8 @@ export class App implements OnInit {
     this.editingApplicationId = application.id;
 
     this.editForm.patchValue({
+      company: application.company,
+      position: application.position,
       status: application.status,
       notes: application.notes || ''
     });

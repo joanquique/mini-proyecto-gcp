@@ -60,6 +60,23 @@
         @if (editingApplicationId === application.id) {
           <form class="edit-form" [formGroup]="editForm" (ngSubmit)="saveEdit(application.id)">
             <div class="form-group">
+              <label>Empresa</label>
+              <input 
+                type="text" 
+                formControlName="company" 
+                placeholder="Ej. Google"
+              >
+            </div>
+
+            <div class="form-group">
+              <label>Vacante</label>
+              <input 
+                type="text" 
+                formControlName="position" 
+                placeholder="Ej. Frontend Developer"
+              >
+            </div>
+            <div class="form-group">
               <label>Estatus</label>
               <select formControlName="status">
                 <option value="Pendiente">Pendiente</option>
