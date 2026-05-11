@@ -28,13 +28,13 @@ export class ApplicationService {
   }
 
   updateApplication(
-    id: number,
+    id: string,
     application: UpdateApplication
   ): Observable<Application> {
     return this.http.put<Application>(`${this.apiUrl}/${id}`, application);
   }
 
-  deleteApplication(id: number): Observable<{ message: string }> {
+  deleteApplication(id: string): Observable<{ message: string }> {
     return this.http.delete<{ message: string }>(`${this.apiUrl}/${id}`);
   }
 }

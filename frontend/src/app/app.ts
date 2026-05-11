@@ -14,6 +14,8 @@ export class App implements OnInit {
   applicationForm: FormGroup;
   loading = true;
   error = '';
+  editingApplicationId: string | null = null;
+  editForm: FormGroup;
 
   constructor(private applicationService: ApplicationService,
     private fb: FormBuilder
@@ -24,6 +26,12 @@ export class App implements OnInit {
       status: ['Pendiente', Validators.required],
       notes: ['']
     });
+
+    this.editForm = this.fb.group({
+      status: ['Pendiente', Validators.required],
+      notes: ['']
+    });
+
   }
 
   ngOnInit(): void {
@@ -42,6 +50,7 @@ export class App implements OnInit {
       }
     });
   }
+  
   createApplication(): void {
     if (this.applicationForm.invalid) {
       this.applicationForm.markAllAsTouched();
@@ -63,7 +72,46 @@ export class App implements OnInit {
       }
     });
   }
-  deleteApplication(id: number): void {
+
+  startEdit(application: Application): void {
+    this.editingApplicationId = application.id;
+
+    this.editForm.patchValue({
+      status: application.status,
+      notes: application.notes || ''
+    });
+  }
+
+  cancelEdit(): void {
+    this.editingApplicationId = null;
+
+    this.editForm.reset({
+      status: 'Pendiente',
+      notes: ''
+    });
+  }
+
+  saveEdit(applicationId: string): void {
+    if (this.editForm.invalid) {
+      this.editForm.markAllAsTouched();
+      return;
+    }
+
+    this.applicationService.updateApplication(applicationId, this.editForm.value).subscribe({
+      next: (updatedApplication) => {
+        this.applications = this.applications.map(application =>
+          application.id === applicationId ? updatedApplication : application
+        );
+
+        this.cancelEdit();
+      },
+      error: () => {
+        this.error = 'No se pudo actualizar la postulación';
+      }
+    });
+  }
+
+  deleteApplication(id: string): void {
     const confirmDelete = confirm('¿Seguro que quieres eliminar esta postulación?');
 
     if (!confirmDelete) {

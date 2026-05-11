@@ -52,26 +52,76 @@
     @for (application of applications; track application.id) {
       <article class="card">
         <h2>{{ application.company }}</h2>
-        <p class="position">{{ application.position }}</p>
-        <p class="status">{{ application.status }}</p>
 
-        @if (application.notes) {
-          <p class="notes">{{ application.notes }}</p>
+        <p class="position">
+          {{ application.position }}
+        </p>
+
+        @if (editingApplicationId === application.id) {
+          <form class="edit-form" [formGroup]="editForm" (ngSubmit)="saveEdit(application.id)">
+            <div class="form-group">
+              <label>Estatus</label>
+              <select formControlName="status">
+                <option value="Pendiente">Pendiente</option>
+                <option value="En proceso">En proceso</option>
+                <option value="Entrevista">Entrevista</option>
+                <option value="Rechazada">Rechazada</option>
+                <option value="Aceptada">Aceptada</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Notas</label>
+              <textarea formControlName="notes"></textarea>
+            </div>
+
+            <div class="actions">
+              <button type="submit">
+                Guardar
+              </button>
+
+              <button 
+                type="button" 
+                class="secondary-button"
+                (click)="cancelEdit()"
+              >
+                Cancelar
+              </button>
+            </div>
+          </form>
+        } @else {
+          <p class="status">
+            {{ application.status }}
+          </p>
+
+          @if (application.notes) {
+            <p class="notes">{{ application.notes }}</p>
+          }
+
+          <div class="card-footer">
+            <small>
+              Creada: {{ application.created_at }}
+            </small>
+
+            <div class="actions">
+              <button
+                type="button"
+                class="edit-button"
+                (click)="startEdit(application)"
+              >
+                Editar
+              </button>
+
+              <button 
+                type="button" 
+                class="delete-button"
+                (click)="deleteApplication(application.id)"
+              >
+                Eliminar
+              </button>
+            </div>
+          </div>
         }
-
-        <div class="card-footer">
-          <small>
-            Creada: {{ application.created_at }}
-          </small>
-
-          <button 
-            type="button" 
-            class="delete-button"
-            (click)="deleteApplication(application.id)"
-          >
-            Eliminar
-          </button>
-        </div>
       </article>
     }
   </section>

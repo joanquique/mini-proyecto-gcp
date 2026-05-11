@@ -144,3 +144,36 @@ button {
     background: #b91c1c;
   }
 }
+
+.edit-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.edit-button {
+  background: #2563eb;
+
+  &:hover {
+    background: #1d4ed8;
+  }
+}
+
+.secondary-button {
+  background: #6b7280;
+
+  &:hover {
+    background: #4b5563;
+  }
+}
+
+.card-footer {
+  align-items: flex-end;
+}
